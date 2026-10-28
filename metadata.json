@@ -1,0 +1,6 @@
+{
+  "name": "DeshStream Live TV",
+  "description": "Watch live Bengali and Indian TV channels with high-definition streaming, dynamic player controls, and curated playlists.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
