@@ -1,6 +1,6 @@
 {
   "name": "DeshStream Live TV",
-  "description": "Watch live Bengali and Indian TV channels with high-definition streaming, dynamic player controls, and curated playlists.",
+  "description": "Watch DeshStream Live TV online. Free HD streaming for Bangladeshi, Indian, and Live Sports channels including cricket, football, news, and entertainment.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

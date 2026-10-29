@@ -44,12 +44,13 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={() => onTabChange('sports')}
             className="text-left group cursor-pointer"
           >
-            <span className="text-base sm:text-lg md:text-xl font-extrabold tracking-tight text-white whitespace-nowrap block leading-none">
+            <h1 className="text-base sm:text-lg md:text-xl font-extrabold tracking-tight text-white whitespace-nowrap block leading-none">
               {lang === 'bn' ? 'দেশস্ট্রিম টিভি' : 'DeshStream TV'}
+            </h1>
+            <span className="text-[10px] text-amber-400 font-medium tracking-wide block">
+              {lang === 'bn' ? 'লাইভ স্পোর্টস ও টিভি' : 'Free Live Sports & TV'}
             </span>
-            <span className="text-[10px] text-amber-400 font-medium tracking-wide">
-              {lang === 'bn' ? 'লাইভ স্পোর্টস ও চ্যানেল' : 'LIVE SPORTS & TV'}
-            </span>
+            <span className="sr-only">DeshStream Live TV – Watch Free Live TV Bangla, India &amp; Sports</span>
           </button>
         </div>
 
