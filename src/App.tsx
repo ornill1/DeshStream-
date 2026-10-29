@@ -30,7 +30,7 @@ const SPORTS_M3U_URL = 'https://iptv-org.github.io/iptv/categories/sports.m3u';
 const FAVORITES_STORAGE_KEY = 'deshstream_favorites_v3';
 const RECENT_STORAGE_KEY = 'deshstream_recent_v3';
 const LAST_CHANNEL_KEY = 'deshstream_last_channel_v3';
-const LANG_STORAGE_KEY = 'deshstream_ui_lang_v3';
+const LANG_STORAGE_KEY = 'deshstream_ui_lang_v4';
 
 export default function App() {
   // App state
@@ -67,12 +67,14 @@ export default function App() {
   // Loading & UI
   const [isLoading, setIsLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(10);
-  const [loadingStatus, setLoadingStatus] = useState('চ্যানেল তালিকা লোড হচ্ছে...');
-  const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
   const [uiLang, setUiLang] = useState<'bn' | 'en'>(() => {
     const saved = localStorage.getItem(LANG_STORAGE_KEY);
-    return saved === 'en' ? 'en' : 'bn';
+    return saved === 'bn' ? 'bn' : 'en';
   });
+  const [loadingStatus, setLoadingStatus] = useState(
+    () => (localStorage.getItem(LANG_STORAGE_KEY) === 'bn' ? 'চ্যানেল তালিকা লোড হচ্ছে...' : 'Loading live TV channels...')
+  );
+  const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
 
   const toggleUiLang = () => {
     const next = uiLang === 'bn' ? 'en' : 'bn';
@@ -350,6 +352,7 @@ export default function App() {
           progress={loadingProgress}
           statusText={loadingStatus}
           totalChannels={sportsChannels.length + bangladeshChannels.length + indiaChannels.length}
+          lang={uiLang}
         />
       )}
 

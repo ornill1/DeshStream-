@@ -6,13 +6,16 @@ interface LoadingScreenProps {
   statusText?: string;
   totalChannels?: number;
   onFinish?: () => void;
+  lang?: 'bn' | 'en';
 }
 
 export const LoadingScreen: React.FC<LoadingScreenProps> = ({
   progress,
-  statusText = 'চ্যানেল লোড হচ্ছে...',
+  statusText,
   totalChannels = 0,
+  lang = 'en',
 }) => {
+  const displayStatus = statusText || (lang === 'bn' ? 'চ্যানেল লোড হচ্ছে...' : 'Loading live channels...');
   const [pulsePhase, setPulsePhase] = useState(0);
 
   useEffect(() => {
@@ -59,13 +62,23 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
         <div className="space-y-1 mb-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/80 border border-slate-800 text-xs text-amber-400 font-medium mb-2">
             <Radio className="w-3.5 h-3.5 animate-pulse text-red-400" />
-            <span>লাইভ টিভি নেটওয়ার্ক · Live TV Network</span>
+            <span>{lang === 'bn' ? 'লাইভ টিভি নেটওয়ার্ক' : 'Live TV Network'}</span>
           </div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-white">
-            দেশস্ট্রিম <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-amber-400 to-emerald-400">লাইভ টিভি</span>
+          <h1 className="text-3xl font-extrabold tracking-tight text-white font-stylish-english">
+            {lang === 'bn' ? (
+              <>
+                দেশস্ট্রিম <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-amber-400 to-emerald-400">লাইভ টিভি</span>
+              </>
+            ) : (
+              <>
+                DeshStream <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-amber-400 to-emerald-400">Live TV</span>
+              </>
+            )}
           </h1>
           <p className="text-sm text-slate-400">
-            বাংলা ও ভারতীয় স্যাটেলাইট চ্যানেলের সরাসরি সম্প্রচার
+            {lang === 'bn'
+              ? 'বাংলা ও ভারতীয় স্যাটেলাইট চ্যানেলের সরাসরি সম্প্রচার'
+              : 'Live Streaming Bangladesh, India & World Sports Channels'}
           </p>
         </div>
 
@@ -81,7 +94,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
           <div className="flex justify-between items-center text-xs text-slate-400 font-medium">
             <span className="flex items-center gap-1.5">
               <Wifi className="w-3 h-3 text-emerald-400 animate-pulse" />
-              {statusText}
+              {displayStatus}
             </span>
             <span className="font-mono text-amber-400 font-bold">{Math.round(progress)}%</span>
           </div>
@@ -91,7 +104,17 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
         {totalChannels > 0 && (
           <div className="text-xs text-slate-400 flex items-center gap-2 mt-2 py-1 px-3 bg-slate-900/60 rounded-lg border border-slate-800">
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span><strong className="text-white font-mono">{totalChannels}</strong> টি লাইভ চ্যানেল সংযুক্ত হচ্ছে</span>
+            <span>
+              {lang === 'bn' ? (
+                <>
+                  <strong className="text-white font-mono">{totalChannels}</strong> টি লাইভ চ্যানেল সংযুক্ত হচ্ছে
+                </>
+              ) : (
+                <>
+                  Connecting <strong className="text-white font-mono">{totalChannels}</strong> live channels
+                </>
+              )}
+            </span>
           </div>
         )}
 
